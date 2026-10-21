@@ -13,7 +13,7 @@ const path = require('path');
 const BOT_TOKEN = process.env.BOT_TOKEN;
 const CHAT_ID = process.env.CHAT_ID;
 const PORT = process.env.PORT || 3000;
-const HTML_FILE = path.join(__dirname, 'smartquite_index.html');
+const HTML_FILE = path.join(__dirname, 'main.html');
 
 if (!BOT_TOKEN || !CHAT_ID) {
   console.error('BOT_TOKEN va CHAT_ID muhit o‘zgaruvchilarini kiriting.');
