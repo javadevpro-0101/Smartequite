@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smartquite — IT yechimlar</title>
+<meta name="description" content="Smartquite — veb-sayt, mobil ilova va IT yechimlar kompaniyasi.">
+<style>
+  :root {
+    --bg: #0b1220;
+    --surface: #111a2e;
+    --card: #16213a;
+    --text: #e6ecf8;
+    --muted: #9aa8c7;
+    --accent: #3b82f6;
+    --accent-2: #22d3ee;
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  a { color: inherit; text-decoration: none; }
+  .container { width: min(1100px, 92%); margin: 0 auto; }
+
+  header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(11, 18, 32, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #1d2a45;
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .logo { font-weight: 800; font-size: 1.3rem; letter-spacing: .5px; }
+  .logo span { color: var(--accent-2); }
+  nav ul { display: flex; gap: 24px; list-style: none; }
+  nav a { color: var(--muted); font-size: .95rem; transition: color .2s; }
+  nav a:hover { color: var(--text); }
+  .btn {
+    display: inline-block; padding: 12px 22px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #fff; font-weight: 600; transition: transform .2s, opacity .2s;
+  }
+  .btn:hover { transform: translateY(-2px); opacity: .92; }
+  .btn-outline {
+    background: transparent; border: 1px solid #2a3a5e; color: var(--text);
+  }
+
+  .hero { padding: 110px 0 90px; text-align: center; }
+  .badge {
+    display: inline-block; padding: 6px 14px; border-radius: 999px;
+    background: var(--card); color: var(--accent-2); font-size: .85rem;
+    border: 1px solid #22395f; margin-bottom: 22px;
+  }
+  .hero h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.15; margin-bottom: 20px; }
+  .hero h1 span {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero p { color: var(--muted); max-width: 640px; margin: 0 auto 34px; font-size: 1.1rem; }
+  .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  section { padding: 90px 0; }
+  .section-title { text-align: center; margin-bottom: 52px; }
+  .section-title h2 { font-size: 2.2rem; margin-bottom: 10px; }
+  .section-title p { color: var(--muted); }
+
+  .grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .card {
+    background: var(--card); border: 1px solid #1f2d4d;
+    border-radius: var(--radius); padding: 30px;
+    transition: transform .25s, border-color .25s;
+  }
+  .card:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .icon {
+    width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center;
+    background: rgba(59, 130, 246, .15); font-size: 1.4rem; margin-bottom: 18px;
+  }
+  .card h3 { margin-bottom: 10px; font-size: 1.15rem; }
+  .card p { color: var(--muted); font-size: .95rem; }
+
+  .about { background: var(--surface); }
+  .about-inner { display: grid; gap: 50px; grid-template-columns: 1fr 1fr; align-items: center; }
+  .about h2 { font-size: 2rem; margin-bottom: 18px; }
+  .about p { color: var(--muted); margin-bottom: 14px; }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .stat { background: var(--card); border-radius: var(--radius); padding: 26px; text-align: center; border: 1px solid #1f2d4d; }
+  .stat strong { display: block; font-size: 2rem; color: var(--accent-2); }
+  .stat span { color: var(--muted); font-size: .9rem; }
+
+  .founders .person {
+    text-align: center; padding: 34px 22px;
+  }
+  .avatar {
+    width: 84px; height: 84px; margin: 0 auto 18px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    display: grid; place-items: center; font-size: 1.6rem; font-weight: 700; color: #fff;
+  }
+  .person h3 { font-size: 1.05rem; margin-bottom: 6px; }
+  .person p { color: var(--muted); font-size: .9rem; }
+
+  .launch {
+    text-align: center;
+    background: linear-gradient(135deg, #16213a, #0f2a4a);
+    border: 1px solid #22395f; border-radius: 24px; padding: 60px 30px;
+  }
+  .launch h2 { font-size: 2rem; margin-bottom: 12px; }
+  .launch p { color: var(--muted); margin-bottom: 26px; }
+  .date { font-size: 1.3rem; color: var(--accent-2); font-weight: 700; margin-bottom: 22px; }
+
+  .contact form { max-width: 620px; margin: 0 auto; display: grid; gap: 14px; }
+  .contact input, .contact textarea {
+    width: 100%; padding: 14px 16px; border-radius: 10px;
+    background: var(--card); border: 1px solid #22335a; color: var(--text);
+    font: inherit;
+  }
+  .contact input:focus, .contact textarea:focus { outline: none; border-color: var(--accent); }
+  .contact textarea { min-height: 130px; resize: vertical; }
+  .contact button { cursor: pointer; border: 0; }
+
+  footer { border-top: 1px solid #1d2a45; padding: 30px 0; color: var(--muted); font-size: .9rem; }
+  .footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+  @media (max-width: 800px) {
+    nav ul { display: none; }
+    .about-inner { grid-template-columns: 1fr; }
+    .hero { padding: 80px 0 70px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#" class="logo">Smart<span>quite</span></a>
+    <nav>
+      <ul>
+        <li><a href="#services">Xizmatlar</a></li>
+        <li><a href="#about">Biz haqimizda</a></li>
+        <li><a href="#founders">Asoschilar</a></li>
+        <li><a href="#contact">Aloqa</a></li>
+      </ul>
+    </nav>
+    <a href="#contact" class="btn">Buyurtma berish</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <span class="badge">🚀 Tez kunda ishga tushadi — 21 oktabr, 2026</span>
+      <h1>Biznesingiz uchun <span>aqlli IT yechimlar</span></h1>
+      <p>Smartquite — veb-saytlar, mobil ilovalar va raqamli tizimlar yaratuvchi IT kompaniya. G‘oyangizni zamonaviy va ishonchli mahsulotga aylantiramiz.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn">Loyiha boshlash</a>
+        <a href="#services" class="btn btn-outline">Xizmatlarni ko‘rish</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <div class="section-title">
+        <h2>Bizning xizmatlar</h2>
+        <p>Har bir biznes uchun moslashtirilgan raqamli yechimlar</p>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="icon">🌐</div>
+          <h3>Veb-sayt ishlab chiqish</h3>
+          <p>Korporativ saytlar, landing page va internet-do‘konlar — tez, xavfsiz va qidiruv tizimlari uchun optimallashtirilgan.</p>
+        </div>
+        <div class="card">
+          <div class="icon">📱</div>
+          <h3>Mobil ilovalar</h3>
+          <p>Android va iOS uchun qulay, intuitiv va tezkor mobil ilovalar.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🎨</div>
+          <h3>UI/UX dizayn</h3>
+          <p>Foydalanuvchi uchun qulay va chiroyli interfeyslar, prototiplar va brend uslubi.</p>
+        </div>
+        <div class="card">
+          <div class="icon">⚙️</div>
+          <h3>Tizim integratsiyasi</h3>
+          <p>CRM, ERP va boshqa tizimlarni o‘zaro bog‘lash hamda avtomatlashtirish.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🛠</div>
+          <h3>Texnik qo‘llab-quvvatlash</h3>
+          <p>Loyihalarni ishga tushirish, yangilash va doimiy texnik xizmat ko‘rsatish.</p>
+        </div>
+        <div class="card">
+          <div class="icon">💡</div>
+          <h3>IT konsalting</h3>
+          <p>Raqamli strategiya, texnologiya tanlash va biznes jarayonlarini optimallashtirish.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="container about-inner">
+      <div>
+        <h2>Smartquite haqida</h2>
+        <p>Smartquite — zamonaviy texnologiyalarga tayangan yosh IT jamoasi. Maqsadimiz — mijozlarimizga aniq natija beradigan, sifatli va ishonchli raqamli mahsulotlar taqdim etish.</p>
+        <p>Har bir loyihada shaffoslik, muddatga rioya qilish va mijoz ehtiyojini chuqur tushunishga e’tibor qaratamiz.</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong>2026</strong><span>Tashkil etilgan yil</span></div>
+        <div class="stat"><strong>4</strong><span>Asoschi</span></div>
+        <div class="stat"><strong>24/7</strong><span>Qo‘llab-quvvatlash</span></div>
+        <div class="stat"><strong>100%</strong><span>Mijoz e’tibori</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="founders" class="founders">
+    <div class="container">
+      <div class="section-title">
+        <h2>Asoschilarimiz</h2>
+        <p>Smartquite ortida turgan jamoa</p>
+      </div>
+      <div class="grid">
+        <div class="card person">
+          <div class="avatar">XN</div>
+          <h3>Xalilova Nozimabonu</h3>
+          <p>Asoschi</p>
+        </div>
+        <div class="card person">
+          <div class="avatar">HS</div>
+          <h3>Hamroyeva Shaxrizoda</h3>
+          <p>Asoschi</p>
+        </div>
+        <div class="card person">
+          <div class="avatar">OD</div>
+          <h3>Odilova Dilorom</h3>
+          <p>Asoschi</p>
+        </div>
+        <div class="card person">
+          <div class="avatar">XJ</div>
+          <h3>Xudoynazarov Javohir</h3>
+          <p>Asoschi</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="launch">
+        <h2>Biz tez orada ochilamiz</h2>
+        <p>Smartquite rasmiy ishga tushirilishi</p>
+        <div class="date">21 oktabr, 2026</div>
+        <a href="#contact" class="btn">Xabardor bo‘lish</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Bog‘lanish</h2>
+        <p>Loyihangiz haqida yozing — biz 24 soat ichida javob beramiz</p>
+      </div>
+      <form id="orderForm">
+        <input type="text" name="name" placeholder="Ismingiz" required>
+        <input type="email" name="email" placeholder="Elektron pochta" required>
+        <input type="tel" name="phone" placeholder="Telefon raqam">
+        <textarea name="message" placeholder="Loyihangiz haqida qisqacha..."></textarea>
+        <button type="submit" class="btn" id="submitBtn">Buyurtma berish</button>
+        <p id="formStatus" style="text-align:center;color:var(--muted);"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Forma yuborilganda backend'ga (/api/order) JSON yuboriladi.
+  // Bot tokeni brauzerda EMAS, serverda saqlanadi.
+  const API_URL = '/api/order'; // Agar backend boshqa domenda bo‘lsa, to‘liq URL yozing
+
+  document.getElementById('orderForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const btn = document.getElementById('submitBtn');
+    const status = document.getElementById('formStatus');
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    btn.disabled = true;
+    status.textContent = 'Yuborilmoqda...';
+
+    try {
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (!res.ok) throw new Error('Server xatosi');
+      status.textContent = 'Rahmat! Buyurtmangiz qabul qilindi.';
+      form.reset();
+    } catch (err) {
+      status.textContent = 'Xatolik yuz berdi. Iltimos, keyinroq urinib ko‘ring.';
+    } finally {
+      btn.disabled = false;
+    }
+  });
+</script>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© 2026 Smartquite. Barcha huquqlar himoyalangan.</span>
+    <span>Samarqand, O‘zbekiston</span>
+  </div>
+</footer>
+
+</body>
+</html>
